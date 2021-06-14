@@ -1,0 +1,19 @@
+<h2>Edit report</h2>
+<%= form_for :post, url: post_path(@post), method: :patch do |f| %>
+  <% if @post.errors.any? %>
+    <% @post.errors.full_messages.each do |msg| %>
+      <div class="profiler-button-active"> <%= msg %> </div>
+    <% end %>
+  <% end %>
+  <p>
+    Title<br>
+    <%= f.text_field(:title, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    Description<br>
+    <%= f.text_area(:description, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    <%= f.submit({:class => 'btn btn-dark'}) %>
+  </p>
+<% end %>

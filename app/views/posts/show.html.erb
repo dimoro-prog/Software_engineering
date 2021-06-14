@@ -1,0 +1,23 @@
+<h2><%= @post.title %></h2>
+<p><%= @post.description %></p>
+<hr>
+<%= link_to "Edit", edit_post_path(@post), :class => 'btn btn-light' %>
+<%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"}, :class => 'btn btn-danger' %>
+<hr>
+<h3>Mark</h3>
+<% @post.marks.each do |mark| %>
+  <div class="alert alert-ligth">
+    <p><%= mark.points %>(<%= mark.letter %>)</p>
+    <%= link_to "Delete", [mark.post, mark], method: :delete, data: {confirm: "Are you sure?"}, :class => 'btn btn-danger' %>
+  </div>
+<% end %>
+<hr>
+<h3>New mark</h3>
+<%= form_for([@post, @post.marks.build]) do |f| %>
+    <p><br>
+    <%= f.text_field(:points, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    <%= f.submit("Оценка", {:class => 'btn btn-success'}) %>
+  </p>
+<% end %>
